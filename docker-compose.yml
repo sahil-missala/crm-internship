@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: crm_mysql_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: manivtha_crm
+      MYSQL_USER: crmuser
+      MYSQL_PASSWORD: strongpassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - crm_db_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: crm_backend_api
+    restart: always
+    ports:
+      - "5050:5050"
+    environment:
+      PORT: 5050
+      DB_HOST: db
+      DB_USER: crmuser
+      DB_PASSWORD: strongpassword
+      DB_NAME: manivtha_crm
+      JWT_SECRET: ${JWT_SECRET:-your_long_random_jwt_secret_here}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+      WHATSAPP_ACCOUNT_SID: ${WHATSAPP_ACCOUNT_SID:-}
+      WHATSAPP_AUTH_TOKEN: ${WHATSAPP_AUTH_TOKEN:-}
+      WHATSAPP_FROM_NUMBER: ${WHATSAPP_FROM_NUMBER:-}
+      WHATSAPP_TO_NUMBER: ${WHATSAPP_TO_NUMBER:-}
+      CORS_ORIGIN: http://localhost:5175
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: crm_frontend_client
+    restart: always
+    ports:
+      - "5175:80"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:5050/api
+
+volumes:
+  crm_db_data:

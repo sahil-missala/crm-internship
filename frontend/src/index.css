@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surfaceBg text-textMain;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-borderGray;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-textMuted/30 rounded;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-textMuted/50;
+}
+
+/* Invoice Print Rules */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    height: auto;
+    font-size: 11pt;
+  }
+
+  /* Hide layout components and non-printable elements */
+  aside, header, nav, .no-print {
+    display: none !important;
+  }
+
+  /* Remove left margin offsets on layout wrappers */
+  div.ml-\[240px\], div.flex-1.flex.flex-col.min-w-0 {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .main-content, main {
+    margin-top: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .bg-surfaceBg {
+    background-color: #ffffff !important;
+  }
+
+  /* Format print card container for page margins */
+  .print-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Adjust sizing to fit clean on A4 */
+  .print-card h1 {
+    font-size: 15pt !important;
+  }
+
+  .print-card h4 {
+    margin-bottom: 4px !important;
+  }
+
+  .print-card .py-8 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .print-card .py-6 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .print-card .my-8 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 1cm;
+  }
+}

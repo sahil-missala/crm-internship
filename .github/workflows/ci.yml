@@ -1,0 +1,30 @@
+name: Backend Smoke Test
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Check backend starts without crash
+        run: |
+          cd backend
+          cp .env.example .env
+          # Start the server and kill it after 5 seconds to verify no compilation/startup errors
+          timeout 5 npm start || code=$?; if [ $code -eq 124 ]; then echo "Server started successfully without crashing"; exit 0; else exit $code; fi
