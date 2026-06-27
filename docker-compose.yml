@@ -34,7 +34,8 @@ services:
       WHATSAPP_AUTH_TOKEN: ${WHATSAPP_AUTH_TOKEN:-}
       WHATSAPP_FROM_NUMBER: ${WHATSAPP_FROM_NUMBER:-}
       WHATSAPP_TO_NUMBER: ${WHATSAPP_TO_NUMBER:-}
-      CORS_ORIGIN: http://localhost:5175
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:5175}
+      ENQUIRY_FORM_URL: ${ENQUIRY_FORM_URL:-http://localhost:5175/enquiry}
     depends_on:
       - db
 

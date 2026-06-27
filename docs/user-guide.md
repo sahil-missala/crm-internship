@@ -66,7 +66,7 @@ To receive automated updates and check booking status directly in Telegram:
 ### Telegram Bot Commands
 Once a customer's chat is linked, they can use the following commands in the bot:
 *   `/status`: Lists the route details and active status of all bookings. Recently cancelled bookings are displayed for 24 hours before being hidden.
-*   `/enquiry`: Instantly replies with a direct link to submit a new enquiry form: `https://testlinkforcrminternshipproject.joharsmp.info/enquiry`.
+*   `/enquiry`: Instantly replies with a direct link to submit a new enquiry form. This link is dynamically configured using the `ENQUIRY_FORM_URL` variable in your `.env` configuration file.
 *   `/cancel`: Lets the customer request booking cancellation directly from the bot chat.
 
 ---

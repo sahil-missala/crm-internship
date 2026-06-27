@@ -64,7 +64,7 @@ Before pushing this project to GitHub or any public repository, please read thes
 1. **Admin Telegram Chat Unlinking**: Admin details connections panel features an "Unlink" trigger that resets the Telegram association dynamically and logs the event to the timeline notes.
 2. **Rule-Based Lead Temperature Priority**: Dynamically classifies enquiries into **Hot** 🔥, **Warm** ☀️, and **Cold** ❄️ based on passenger counts, scheduling proximity, and executive follow-up activity.
 3. **Automated Invoice Generator**: Automatically compiles bookings into printed invoices (formatted as `INV-YYYY-MM-XXXX`) with Tailwind print styling rules.
-4. **Chatbot Web Enquiry Link**: Customers texting `/enquiry` to the Telegram bot instantly receive a direct link to the online booking enquiry form.
+4. **Chatbot Web Enquiry Link**: Customers texting `/enquiry` to the Telegram bot instantly receive a direct link to the online booking enquiry form (customizable via `ENQUIRY_FORM_URL` in `.env`).
 5. **Recent Status Filtering**: Bot `/status` commands only display active enquiries and recently cancelled bookings (cancelled within the last 24 hours).
 
 ---
