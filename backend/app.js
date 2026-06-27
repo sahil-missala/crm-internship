@@ -41,6 +41,19 @@ app.get('/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date() });
 });
 
+const path = require('path');
+
+// Serve React static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Fallback all non-API web requests to the React Router index.html
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return next();
+  }
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // Mount global error handler (Must be placed after all routes)
 app.use(errorHandler);
 
