@@ -12,24 +12,6 @@ The application is divided into a public-facing **Customer Enquiry Portal** wher
 
 ---
 
-## 🔒 Security Warning: Keep Your Credentials Safe
-
-Before pushing this project to GitHub or any public repository, please read these security instructions carefully:
-
-1. **Do Not Commit `.env` Files**: 
-   - We have added a root `.gitignore` file to ensure `.env` and `backend/.env` files are never tracked by Git.
-   - Always copy credentials to `.env` locally, but never push `.env` to GitHub.
-2. **Exposed Credentials to Clear**:
-   - In your `.env` and `backend/.env`, you currently have a live Telegram Bot Token:
-     `TELEGRAM_BOT_TOKEN=8720835820:AAHg-1KTw4n42TghcW_Khy7Nm4pkGp9oDe0`
-   - Make sure to clear this value from any files before publishing the repository. Leave them empty like this:
-     `TELEGRAM_BOT_TOKEN=`
-     `TELEGRAM_CHAT_ID=`
-3. **Use `.env.example`**:
-   - Use the `.env.example` template to outline what variables are required without exposing actual values.
-
----
-
 ## 📁 Repository Structure
 
 ```
